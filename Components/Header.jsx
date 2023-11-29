@@ -6,6 +6,7 @@ const Header = () => {
     return ( 
         <View style={styles.container}>
             <Text style={styles.text} >AirTicket</Text>
+            <TextInput placeholder='From'/>
         </View>
         
      );
