@@ -6,7 +6,6 @@ const Header = () => {
     return ( 
         <View style={styles.container}>
             <Text style={styles.text} >AirTicket</Text>
-            <TextInput placeholder='From'/>
         </View>
         
      );
@@ -15,14 +14,17 @@ const Header = () => {
 const styles = StyleSheet.create({
     container: {
         width:'100%',
+        height:'8%',
+        justifyContent:'center',
+        alignItems:'center',
         marginBottom:'auto',
       backgroundColor: '#05203c',
     },
     text:{
         color:'white',
-        fontSize:20,
-        padding:10,
-
+        fontSize:25,
+        // padding:20,
+        fontWeigh:'bold',
     }
 
   
