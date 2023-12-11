@@ -11,8 +11,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/* <Navigator/> */}
-      {/* <FlightList/> */}
-      <Search/>
+      <FlightList/>
+      {/* <Search/> */}
     </View>
   );
 }

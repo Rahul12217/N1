@@ -8,20 +8,7 @@ const Search = ({ props, navigation }) => {
     navigation.navigate("FlightList");
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://192.168.29.47:44351/api/Flights");
-        const result = await response.json();
-        console.log(result);
-        console.log("hi");
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
 
-    fetchData();
-  }, []);
 
   return (
     <View style={styles.container}>
