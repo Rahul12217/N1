@@ -7,22 +7,28 @@ import { FontAwesome5 } from "@expo/vector-icons";
 
 
 const FlightList = ({ navigation }) => {
-  const [flights, setFlights] = useState([]);
+  // const [flights, setFlights] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https:///localhost:44351/api/Flights");
-        const result = await response.json();
-        setFlights(result);
-        console.log("hi");
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const [flights, setFlights] = useState([
+    { airline:'Indigo',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
+    { airline:'Indigo',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023'},
+    { airline:'Indigo',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
+  ]);
 
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("https:///localhost:44351/api/Flights");
+  //       const result = await response.json();
+  //       setFlights(result);
+  //       console.log("hi");
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
   console.log(flights)
   return (
     <View style={styles.container}>

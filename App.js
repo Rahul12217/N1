@@ -10,8 +10,8 @@ import FlightList from "./Components/flightList";
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <Navigator/> */}
-      <FlightList/>
+      <Navigator/>
+      {/* <FlightList/> */}
       {/* <Search/> */}
     </View>
   );
