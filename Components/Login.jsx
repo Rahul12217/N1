@@ -1,92 +1,129 @@
-import { Button, StyleSheet, Text, TextInput, View } from "react-native-web";
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { Modal } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import { useState } from "react";
+import Register from "./Register";
 
-const Login = () => {
-    return (
-        <View>
-            <View style={styles.container}>
-                <FontAwesomeIcon style={styles.icon} icon={faPlaneDeparture} />
-                <View>
-                    <TextInput style={styles.input_fields} placeholder='Email' />
-                    <TextInput style={styles.input_fields} placeholder='Password' />
-                </View>
-                <View style={styles.login}>
-                    <Button title='Log in' />
-                </View>
+const Login = ({navigation}) => {
 
-                <View>
-                    <Text style={styles.forgot}>Forgot Password?</Text>
-                </View>
-                <View style={styles.c}>
-                    <Text style={styles.create} >Create new account</Text>
-                </View>
+  const [modal, setModal] = useState(false);
 
-                <Text style={styles.title} >AirTicket</Text>
-            </View>
-        </View>
-    );
-}
+  const handleLogin = () => {
+    navigation.navigate('Search')
+  }
+
+  return (
+    <View style={styles.container}>
+      <FontAwesome5 name="plane-departure" size={64} color="#05203c" style={styles.icon}/>
+      <View style={styles.i_container}>
+        <TextInput style={styles.input_fields} placeholder="Email" />
+        <TextInput style={styles.input_fields} placeholder="Password" />
+        <Button title="Log in" color="#05203c" onPress={handleLogin} />
+        <Text style={styles.forgot}>Forgot Password?</Text>
+        <Modal visible={modal} animationType="slide">
+          <View style={styles.modalContent}>
+            <MaterialIcons
+              name="close"
+              size={24}
+              style={{ ...styles.modalToggle, ...styles.modalClose }}
+              onPress={() => setModal(false)}
+            />
+            <Register />
+          </View>
+        </Modal>
+        <Text style={styles.create} onPress={() => setModal(true)}>
+          Create new account
+        </Text>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        borderWidth: 1,
-        width: '100%',
-        borderColor: 'rgb(255, 255, 255)',
-        // backgroundColor:'red'
-    },
-    icon: {
-        color: '#05203c',
-        height: 80,
-        width: 80,
-        marginBottom: 20,
-    },
+  container: {
+    flex: 1,
+    backgroundColor:'#fff'
+  },
+  icon:{
+    backgroundColor:'white',
+    marginRight:'auto',
+    marginLeft:'auto',
+    top: "20%",
+    borderRadius:7,
+    padding:10,
+    elevation:5,
+    shadowOffset: { width: 2, height: 2 },
+    shadowColor: 'black',
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
 
-    input_fields: {
-        margin: 10,
-        padding: 10,
-        fontSize: 23,
-        borderWidth: 1,
-        borderRadius: 10,
-        // borderColor: 'rgb(245, 243, 243)',
-        width: 350,
-        height: 60,
-        marginRight: 'auto',
-        marginLeft: 'auto',
-        boxShadow: '0 1px 5px 0 rgba(37,32,31,.3)',
-    },
+  },
 
-    login: {
-        marginTop: 20,
-    },
-    forgot: {
-        fontSize: 23,
-        marginTop: 15,
-        color: 'blue',
-    },
-    c: {
-        height: 40,
-        top: '47%',
-        backgroundColor: 'rgb(245, 243, 243)',
-        width: 350,
-        borderWidth: 1,
-        borderColor: 'blue',
-        fontSize: 23,
-        borderRadius: 10,
-        // justfyContent:'center',
-        alignItems: 'center'
-    },
+  i_container: {
+    marginTop: 25,
+    top: "20%",
+  },
 
-    create: {
-        fontSize: 23,
-        color: 'blue',
-    },
-    title: {
-        top: '50%',
-        fontSize: 20,
-        color: '#05203c',
-    }
-})
+  input_fields: {
+    margin: 10,
+    padding: 10,
+    fontSize: 23,
+    borderWidth: 1,
+    borderRadius: 10,
+    width: "90%",
+    height: 60,
+    marginRight: "auto",
+    marginLeft: "auto",
+  },
+
+  login: {
+    alignItems: "center",
+    // top:'25%',
+    marginTop: 20,
+  },
+  f_container: {
+    top: "25%",
+  },
+  forgot: {
+    fontSize: 18,
+    marginTop: 15,
+    color: "#05203c",
+    textAlign: "center",
+  },
+
+  create: {
+    marginRight: "auto",
+    marginLeft: "auto",
+    width: "90%",
+    height: 40,
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 3,
+    top: "90%",
+    fontSize: 23,
+    color: "#05203c",
+    textAlign: "center",
+  },
+  modalToggle: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#f2f2f2",
+    padding: 10,
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  modalClose: {
+    marginTop: 20,
+    marginBottom: 0,
+  },
+  modalContent: {
+    flex: 1,
+  },
+});
 
 export default Login;

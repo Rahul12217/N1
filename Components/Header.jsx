@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput } from 'react-native';
-import { View } from 'react-native-web';
+import { View } from 'react-native';
 
 const Header = () => {
     return ( 
