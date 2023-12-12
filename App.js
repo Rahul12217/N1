@@ -11,7 +11,7 @@ import MyTickets from "./Components/MyTickets";
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <FlightList/> */}
+
       <Search/>
     </View>
   );

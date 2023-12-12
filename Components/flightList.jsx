@@ -15,21 +15,20 @@ const FlightList = () => {
     { airline:'AirAsia',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023'},
     { airline:'Vistara',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
   ]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("https:///localhost:44351/api/Flights");
+  //       const result = await response.json();
+  //       setFlights(result);
+  //       console.log("hi");
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https:///localhost:44351/api/Flights");
-        const result = await response.json();
-        setFlights(result);
-        console.log("hi");
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
   console.log(flights)
   return (
     <View style={styles.container}>
