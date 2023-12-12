@@ -6,22 +6,41 @@ import { Modal } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import Register from "./Register";
+import { TouchableOpacity } from "react-native";
 
-const Login = () => {
-
+const Login = ({ navigation }) => {
   const [modal, setModal] = useState(false);
 
-  const handleLogin = () => {
+
+  const presshandler=()=>{
     navigation.navigate('Search')
   }
 
+  const handleLogin = () => {
+    navigation.navigate("Search");
+  };
+
   return (
     <View style={styles.container}>
-      <FontAwesome5 name="plane-departure" size={64} color="#05203c" style={styles.icon}/>
+      <FontAwesome5
+        name="plane-departure"
+        size={64}
+        color="#05203c"
+        style={styles.icon}
+      />
       <View style={styles.i_container}>
         <TextInput style={styles.input_fields} placeholder="Email" />
         <TextInput style={styles.input_fields} placeholder="Password" />
-        <Button title="Log in" color="#05203c" onPress={handleLogin} />
+        {/* <Button title="Log in" color="#05203c" onPress={handleLogin} /> */}
+        <TouchableOpacity
+          onPress={() => {
+            presshandler();
+          }}
+        >
+          <View style={styles.search_button}>
+            <Text style={styles.search_text}>Login</Text>
+          </View>
+        </TouchableOpacity>
         <Text style={styles.forgot}>Forgot Password?</Text>
         <Modal visible={modal} animationType="slide">
           <View style={styles.modalContent}>
@@ -45,21 +64,20 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#fff'
+    backgroundColor: "#fff",
   },
-  icon:{
-    backgroundColor:'white',
-    marginRight:'auto',
-    marginLeft:'auto',
+  icon: {
+    backgroundColor: "white",
+    marginRight: "auto",
+    marginLeft: "auto",
     top: "20%",
-    borderRadius:7,
-    padding:10,
-    elevation:5,
+    borderRadius: 7,
+    padding: 10,
+    elevation: 5,
     shadowOffset: { width: 2, height: 2 },
-    shadowColor: 'black',
+    shadowColor: "black",
     shadowOpacity: 0.3,
     shadowRadius: 2,
-
   },
 
   i_container: {
@@ -85,7 +103,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   f_container: {
-    top: "25%",
+    // top: "15%",
   },
   forgot: {
     fontSize: 18,
@@ -102,7 +120,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     padding: 3,
-    top: "90%",
+    top: 180,
     fontSize: 23,
     color: "#05203c",
     textAlign: "center",
@@ -123,6 +141,21 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     flex: 1,
+  },
+  search_button: {
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    width: "90%",
+    backgroundColor: '#05203c',
+    height: 50,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  search_text: {
+    color: 'white',
+    textAlign: "center",
+    fontSize: 20,
+    padding: 10,
   },
 });
 

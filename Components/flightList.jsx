@@ -12,7 +12,7 @@ const FlightList = () => {
 
   const [flights, setFlights] = useState([
     { airline:'Indigo',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
-    { airline:'AirAsia',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023'},
+    { airline:'SpiceJet',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023'},
     { airline:'Vistara',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
   ]);
   // useEffect(() => {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   airline: {
     'Indigo': require('../imges/indigo.jpg'),
-    'AirIndia': require('../imges/airindia.jpg'),
+    'AirIndia': require('../imges/airIndia.jpg'),
     'AirAsia': require('../imges/airasia.jpg'),
     'Vistara': require('../imges/vistara.jpg'),
     'SpiceJet': require('../imges/spicejet.jpg'),

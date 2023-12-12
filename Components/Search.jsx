@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { StyleSheet, TextInput, View, Text, Button } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Formik } from "formik";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 
-const Search = () => {
+const Search = ({navigation}) => {
   const presshandler = () => {
+    navigation.navigate("Search_Reasults")
   };
 
 
@@ -102,9 +103,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     padding: 10,
-
-
-
   },
 });
 

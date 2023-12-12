@@ -41,7 +41,6 @@ export default function TicketDetails() {
               value={props.values.Phone}
               keyboardType="numeric"
             />
-
             <Button
               color="grey"
               title="Proceed"
