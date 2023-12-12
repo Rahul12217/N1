@@ -12,7 +12,7 @@ const Login = () => {
   const [modal, setModal] = useState(false);
 
   const handleLogin = () => {
-    // navigation.navigate('Search')
+    navigation.navigate('Search')
   }
 
   return (

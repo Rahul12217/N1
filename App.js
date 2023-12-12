@@ -8,12 +8,18 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import Profile from "./Components/Profile";
 import FlightList from "./Components/flightList";
 import MyTickets from "./Components/MyTickets";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export default function App() {
-  return (
-    <View style={styles.container}>
 
-      <Search/>
-    </View>
+  const Stack = createNativeStackNavigator();
+
+  return (
+    <NavigationContainer>
+      <Stack.Screen name='Login' component={Login}/>
+      <Stack.Screen name='Search' component={Search}/>
+      <Stack.Screen name='Search_Reasults' component={FlightList}/>
+    </NavigationContainer>
   );
 }
 
