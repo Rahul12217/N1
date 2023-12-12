@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { StyleSheet, TextInput, View, Text, Button } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Formik } from "formik";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const Search = ({ props, navigation }) => {
+const Search = () => {
   const presshandler = () => {
-    navigation.navigate("FlightList");
   };
 
 
@@ -38,14 +38,15 @@ const Search = ({ props, navigation }) => {
               onChangeText={props.handleChange("date")}
               value={props.values.date}
             />
-            <Button
-              title="Search"
-              style={styles.button}
+            <TouchableOpacity
               onPress={() => {
                 presshandler();
                 props.handleSubmit();
-              }}
-            />
+              }}>
+              <View style={styles.search_button}>
+                <Text style={styles.search_text}>Search</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         )}
       </Formik>
@@ -82,10 +83,28 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     // borderColor: 'rgb(245, 243, 243)',
-    width: 350,
+    width: '85%',
     height: 60,
     marginRight: "auto",
     marginLeft: "auto",
+  },
+  search_button: {
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    width: "85%",
+    backgroundColor: '#05203c',
+    height: 50,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  search_text: {
+    color: 'white',
+    textAlign: "center",
+    fontSize: 20,
+    padding: 10,
+
+
+
   },
 });
 

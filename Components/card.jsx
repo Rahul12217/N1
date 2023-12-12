@@ -27,8 +27,9 @@ const styles = StyleSheet.create({
     height:70,
   },
   cardContent: {
-    justifyContent:'space-around',
+    justifyContent:'space-between',
     flexDirection:'row',
+    alignItems:'center',
     marginHorizontal: 18,
     marginVertical: 20,
   }

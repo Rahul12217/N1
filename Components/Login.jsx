@@ -7,12 +7,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import Register from "./Register";
 
-const Login = ({navigation}) => {
+const Login = () => {
 
   const [modal, setModal] = useState(false);
 
   const handleLogin = () => {
-    navigation.navigate('Search')
+    // navigation.navigate('Search')
   }
 
   return (
