@@ -1,56 +1,95 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, TextInput, View, Text, Button } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Formik } from "formik";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const Search = ({navigation}) => {
   const presshandler = () => {
-    navigation.navigate("Search_Reasults")
   };
 
+
+  const [from,setFrom] = useState('');
+  const [to,setTo] = useState('');
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setShow(false);
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  const onSubmit=() => {
+    navigation.navigate('Search_Results',{
+      from:from,
+      to:to,
+      date:`${date.getFullYear()}-${parseInt(date.getMonth() + 1)}-${date.getDate()}`
+    })
+  }
 
 
   return (
     <View style={styles.container}>
-      <Formik
-        initialValues={{ from: "", to: "", date: "" }}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
-        {(props) => (
+
+        
           <View style={styles.search_fields}>
             <TextInput
               style={styles.search}
               placeholder="From"
-              onChangeText={props.handleChange("from")}
-              value={props.values.from}
+              onChangeText={(v)=>setFrom(v)}
+              value={from}
             />
             <TextInput
               style={styles.search}
               placeholder="To"
-              onChangeText={props.handleChange("to")}
-              value={props.values.to}
+              onChangeText={(v)=>setTo(v)}
+              value={to}
             />
-            <TextInput
+            {/* <TextInput
               style={styles.search}
               placeholder="Date"
               onChangeText={props.handleChange("date")}
               value={props.values.date}
-            />
+            /> */}
+            {/* <Button onPress={showDatepicker} title="Show date picker!" /> */}
+            <TouchableOpacity onPress={showDatepicker}>
+              <View style={styles.search}>
+                <Text style={styles.date}>{date.toLocaleString().slice(0,10)}</Text>
+              </View>
+            </TouchableOpacity>
+
+            {show && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={mode}
+                is24Hour={true}
+                dateFormat="day dayofweek month"
+                onChange={onChange}
+              />
+            )}
             <TouchableOpacity
               onPress={() => {
                 presshandler();
-                props.handleSubmit();
+                onSubmit();
               }}>
               <View style={styles.search_button}>
                 <Text style={styles.search_text}>Search</Text>
               </View>
             </TouchableOpacity>
           </View>
-        )}
-      </Formik>
     </View>
   );
 };
@@ -103,6 +142,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     padding: 10,
+  },
+  date: {
+    color: 'black',
+    fontSize: 20,
+    // padding: 10,
+    justifyContent: 'center'
   },
 });
 

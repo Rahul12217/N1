@@ -13,7 +13,7 @@ const Login = ({ navigation }) => {
 
 
   const presshandler=()=>{
-    navigation.navigate('Search')
+    navigation.navigate('Tab')
   }
 
   const handleLogin = () => {

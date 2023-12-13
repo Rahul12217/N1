@@ -7,14 +7,36 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { Image } from "react-native";
 
 
-const FlightList = () => {
+const FlightList = ({route}) => {
   // const [flights, setFlights] = useState([]);
-
+  
   const [flights, setFlights] = useState([
     { airline:'Indigo',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
     { airline:'SpiceJet',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023'},
     { airline:'Vistara',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
+    { airline:'Indigo',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
+    { airline:'SpiceJet',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023'},
+    { airline:'Vistara',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
+    { airline:'Indigo',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
+    { airline:'SpiceJet',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023'},
+    { airline:'Vistara',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
+    { airline:'Indigo',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
+    { airline:'SpiceJet',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023'},
+    { airline:'Vistara',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
+    { airline:'Indigo',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
+    { airline:'SpiceJet',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023'},
+    { airline:'Vistara',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
+    { airline:'Indigo',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
+    { airline:'SpiceJet',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023'},
+    { airline:'Vistara',arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
+    
   ]);
+
+  const {from} = route.params;
+  const {to} = route.params;
+  const {date} = route.params;
+  console.log(date)
+
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
