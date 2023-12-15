@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     height: 60,
     marginRight: "auto",
     marginLeft: "auto",
+    fontSize:23,
   },
   button: {
     margin: 10,

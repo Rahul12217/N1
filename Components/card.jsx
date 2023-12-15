@@ -25,12 +25,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 6,
     height:70,
+    justifyContent:'center'    
   },
   cardContent: {
     justifyContent:'space-between',
     flexDirection:'row',
     alignItems:'center',
     marginHorizontal: 18,
-    marginVertical: 20,
+    marginVertical: 18,
   }
 });
