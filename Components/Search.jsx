@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const Search = ({navigation}) => {
+const Search = ({route,navigation}) => {
   const presshandler = () => {
   };
 

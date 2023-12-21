@@ -5,32 +5,51 @@ import React from 'react';
 import Card from "./card";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Image } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
-const FlightList = ({ navigation }) => {
+const FlightList = ({ navigation,route }) => {
   // const [flights, setFlights] = useState([
   //   { airline: 'Indigo', from: 'Chennai', to: 'Vizag', fare: '2023', departureTime: '2:30 PM', arrivalTime: '3:40 PM' },
   //   { from: 'Chennai', to: 'Vizag', fare: '2023', departureTime: '2:30 PM', arrivalTime: '3:40 PM' },
   //   { from: 'Chennai', to: 'Vizag', fare: '2023', departureTime: '2:30 PM', arrivalTime: '3:40 PM' },
   // ]);
 
-  const [flights, setFlights] = useState([
-    { airline: 'Indigo', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
-    { airline: 'SpiceJet', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023' },
-    { airline: 'Vistara', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
-    { airline: 'Indigo', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
-    { airline: 'SpiceJet', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023' },
-    { airline: 'Vistara', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
-    { airline: 'Indigo', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
+  // { airline: 'Indigo', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
+  // { airline: 'SpiceJet', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023' },
+  // { airline: 'Vistara', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
+  // { airline: 'Indigo', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
+  // { airline: 'SpiceJet', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2023' },
+  // { airline: 'Vistara', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2223' },
+  // { airline: 'Indigo', arrivalTime: 'Chennai', departureTime: 'Vizag', fare: '2000' },
 
-  ])
+  const {date} = route.params;
+  const {from} = route.params;
+  const {to} = route.params;
+
+
+  const [flights, setFlights] = useState([ ]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https:///localhost:44351/api/Flights/${from}/${to}/${date}`);
+        const result = await response.json();
+        setFlights(result);
+        console.log();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
 
   return (
     <View style={styles.container}>
       <FlatList data={flights} renderItem={({ item }) => (
-        <TouchableOpacity onPress={() => navigation.navigate('TicketDets', item)}>
+        <TouchableOpacity onPress={() => {navigation.navigate('TicketDets');AsyncStorage.setItem('flight',JSON.stringify(item))}}>
           <Card>
             <View>
               <View style={styles.alogo}>
@@ -117,20 +136,20 @@ const styles = StyleSheet.create({
 //     console.log('hi')
 //   }
 
-//   // useEffect(() => {
-//   //   const fetchData = async () => {
-//   //     try {
-//   //       const response = await fetch("https:///localhost:44351/api/Flights");
-//   //       const result = await response.json();
-//   //       setFlights(result);
-//   //       console.log("hi");
-//   //     } catch (error) {
-//   //       console.error("Error fetching data:", error);
-//   //     }
-//   //   };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("https:///localhost:44351/api/Flights");
+  //       const result = await response.json();
+  //       setFlights(result);
+  //       console.log("hi");
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
 
-//   //   fetchData();
-//   // }, []);
+  //   fetchData();
+  // }, []);
 //   console.log(flights)
 //   return (
 //     <View style={styles.container}>

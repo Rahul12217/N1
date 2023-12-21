@@ -9,6 +9,7 @@ import MyTickets from "./Components/MyTickets";
 import Profile from "./Components/Profile";
 import Search from "./Components/Search";
 import TicketDetails from "./Components/ticketDetails";
+import Details from "./Components/Details";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -20,8 +21,10 @@ export default function App() {
         <Stack.Navigator
           initialRouteName="Login"
           screenOptions={{
+            headerLeft:()=>{return null;},
             headerStyle: {
               backgroundColor:"#05203c",
+              
             },
             headerTintColor:"#fff",
             headerTitle:'AirTicket',
@@ -33,9 +36,14 @@ export default function App() {
             {
               title:'Tab'
             }
-          } />
+          } /> 
           <Stack.Screen name="Search_Results" component={FlightList} />
           <Stack.Screen name="TicketDets" component={TicketDetails} />
+          <Stack.Screen name="Details" component={Details} options={
+            {
+              headerLeft:()=>{return true;}
+            }
+          } /> 
           
         </Stack.Navigator>
       </NavigationContainer>

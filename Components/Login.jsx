@@ -7,18 +7,44 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import Register from "./Register";
 import { TouchableOpacity } from "react-native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = ({ navigation }) => {
   const [modal, setModal] = useState(false);
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState();
+  const [user,setUser] =useState([]);
 
 
-  const presshandler=()=>{
-    navigation.navigate('Tab')
+  const handleLogin = async () => {
+
+    const data = { email: email, password: password };
+    console.log(data)
+
+    try{
+      let result = await axios.post(`https://localhost:44351/api/Login`, data)
+      let a = await axios.get(`https://localhost:44351/api/Users/${email},${password}`)
+      //console.log(typeof(result.data))
+      setUser(a.data);
+      AsyncStorage.setItem('user',JSON.stringify(a.data))
+
+      if (email.length != 0 && password.length != 0 && result.status == 200) {
+        navigation.navigate('Tab'); 
+      }
+    }
+    catch(error){
+      alert('Invalid credentials');
+      console.log(error)
+    }
+
   }
 
-  const handleLogin = () => {
-    navigation.navigate("Search");
-  };
+
+  console.log(user)
+  // const handleLogin = () => {
+  //   navigation.navigate("Search");
+  // };
 
   return (
     <View style={styles.container}>
@@ -29,12 +55,12 @@ const Login = ({ navigation }) => {
         style={styles.icon}
       />
       <View style={styles.i_container}>
-        <TextInput style={styles.input_fields} placeholder="Email" />
-        <TextInput style={styles.input_fields} placeholder="Password" />
+        <TextInput style={styles.input_fields} placeholder="Email" onChangeText={(value)=>setEmail(value)} />
+        <TextInput style={styles.input_fields} placeholder="Password" onChangeText={(value)=>setPassword(value)} />
         {/* <Button title="Log in" color="#05203c" onPress={handleLogin} /> */}
         <TouchableOpacity
           onPress={() => {
-            presshandler();
+            handleLogin();
           }}
         >
           <View style={styles.search_button}>

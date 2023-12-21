@@ -4,13 +4,39 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useEffect } from "react";
+import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Profile = () => {
+const Profile = ({navigation}) => {
+
+    const [user, setUser] = useState([]);
+    const [name,setName] = useState('');
+
+    useEffect(() => {
+
+        const getUser = async () => {
+            await AsyncStorage.getItem('user', (error, result) => {
+                if (result) {
+                    console.log(JSON.parse(result));
+                    setUser(JSON.parse(result))
+                    setName(JSON.parse(result).name)
+
+                } else {
+                    console.log(JSON.stringfy(error));
+                }
+            });
+
+        }
+        getUser();
+
+    }, [])
+    
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.title}>Profile</Text>
-                <Text style={styles.username}>Rahul Yamali</Text>
+                <Text style={styles.username}>{name.slice(0,1)}</Text>
             </View>
             <View style={styles.manage}>
                 <View>
@@ -19,7 +45,7 @@ const Profile = () => {
                 <View style={styles.b_container}>
                     <View style={styles.b1}>
                         <View style={styles.buttons}>
-                            <Pressable onPress={()=>alert('Details')}>
+                            <Pressable onPress={()=>navigation.navigate('Details')}>
                                 <MaterialCommunityIcons name="card-account-details" size={74} color="black" />
                                 <Text style={{ fontSize: 18 }}>
                                     Your Details
@@ -27,7 +53,7 @@ const Profile = () => {
                             </Pressable>
                         </View>
                         <View style={styles.buttons}>
-                            <Pressable onPress={()=>alert('Tickets')}>
+                            <Pressable onPress={()=>navigation.navigate('My Bookings')}>
                                 <FontAwesome5 name="ticket-alt" size={74} color="black" />
                                 <Text style={{ fontSize: 18 }}>
                                     My Tickets
@@ -77,12 +103,17 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     username: {
-        padding: 5,
+        height:60,
+        width:60,
+        padding: 10,
         color: 'white',
-        fontSize: 23,
+        fontSize: 28,
         fontWeight: 400,
         backgroundColor: '#0062e3',
-        borderRadius: 7,
+        borderRadius: '50%',
+        textAlign:'center',
+        alignItems:'center',
+        justifyContent:'center'
     },
     manage: {
         margin: 20,
